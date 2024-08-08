@@ -3,6 +3,7 @@ package com.example.motivation.ui
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import com.example.motivation.infrastructure.MotivationConstants
 import com.example.motivation.R
 import com.example.motivation.infrastructure.SecurityPreferences
@@ -24,10 +25,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         // Handle
         this.handleUsername()
+
+        val category = SecurityPreferences(this).getString(MotivationConstants.KEY.CATEGORY_PHRASE)
+        if(category == ""){
+            SecurityPreferences(this)
+                .storeString(
+                    MotivationConstants.KEY.CATEGORY_PHRASE,
+                    MotivationConstants.CATEGORY_PHRASE.MOTIVATION
+                )
+        }
+
         this.handlePhrase()
 
         // Eventos
         binding.btnNextText.setOnClickListener(this)
+        binding.imgInfinito.setOnClickListener(this)
+        binding.imgUser.setOnClickListener(this)
+        binding.imgSun.setOnClickListener(this)
 
     }
 
@@ -41,39 +55,74 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun getPhrase(): String {
-        val indexPhase: Int = Random.nextInt(20)
-        return phrases()[indexPhase]
+
+        val phrases = phrases()
+
+        val indexPhase: Int = Random.nextInt(phrases?.count() ?: 1 )
+
+        val text: String = phrases?.get(indexPhase) ?: ""
+
+        if(text == ""){
+            Toast.makeText(this, "Categoria invalida!", Toast.LENGTH_SHORT).show()
+        }
+
+        return text
     }
 
-    private fun phrases(): Array<String> {
-        return arrayOf(
-            "Acredite em você e em tudo que você é.",
+    private fun phrases(): Array<String>? {
+
+        val allPhrases: MutableMap<String, Array<String>> = mutableMapOf()
+
+        allPhrases[MotivationConstants.CATEGORY_PHRASE.MOTIVATION] = arrayOf(
             "O sucesso é a soma de pequenos esforços repetidos dia após dia.",
-            "A única maneira de fazer um excelente trabalho é amar o que você faz.",
-            "Nunca é tarde demais para ser aquilo que você sempre desejou ser.",
-            "O fracasso é apenas a oportunidade de começar de novo com mais inteligência.",
-            "Você é mais forte do que imagina.",
-            "Sonhe grande e ouse falhar.",
-            "A persistência é o caminho do êxito.",
             "Acredite que você pode, assim você já está no meio do caminho.",
-            "As grandes conquistas começam com a decisão de tentar.",
-            "O único lugar onde o sucesso vem antes do trabalho é no dicionário.",
-            "O futuro pertence àqueles que acreditam na beleza de seus sonhos.",
-            "Se você pode sonhar, você pode realizar.",
-            "Não espere por oportunidades, crie-as.",
-            "O segredo do sucesso é a constância de propósito.",
-            "A vida é 10% o que acontece com você e 90% como você reage a isso.",
-            "Não importa quão devagar você vá, desde que não pare.",
-            "Tudo o que um sonho precisa para ser realizado é alguém que acredite que ele possa ser realizado.",
-            "Nunca desista de um sonho por causa do tempo que levará para realizá-lo. O tempo vai passar de qualquer forma.",
-            "Acredite, você tem forças para chegar onde quiser. Basta querer."
+            "A única maneira de fazer um excelente trabalho é amar o que você faz.",
+            "Não importa o quão devagar você vá, desde que você não pare.",
+            "A persistência é o caminho do êxito."
         )
 
+        allPhrases[MotivationConstants.CATEGORY_PHRASE.HAPPY] = arrayOf(
+            "A felicidade não é algo pronto. Ela vem das suas próprias ações.",
+            "A verdadeira felicidade está na própria casa, entre as alegrias da família.",
+            "A felicidade é quando o que você pensa, o que você diz e o que você faz estão em harmonia.",
+            "A felicidade é a única coisa que podemos dar sem possuir.",
+            "A felicidade não depende do que você tem ou quem você é. Depende apenas do que você pensa."
+        )
+
+        allPhrases[MotivationConstants.CATEGORY_PHRASE.DAY] = arrayOf(
+            "Bom dia! Que seu dia seja repleto de sorrisos, alegrias e conquistas.",
+            "Que seu dia comece bem e termine ainda melhor. Bom dia!",
+            "Cada manhã traz novas oportunidades. Aproveite-as ao máximo! Bom dia!",
+            "Bom dia! Que hoje você encontre a beleza nas pequenas coisas e a força para superar qualquer desafio.",
+            "Que seu dia seja tão brilhante quanto o sol da manhã. Bom dia!"
+        )
+
+        return allPhrases[SecurityPreferences(this).getString(MotivationConstants.KEY.CATEGORY_PHRASE)]
     }
 
     override fun onClick(v: View) {
 
         if(v.id == R.id.btn_next_text) {
+            this.handlePhrase()
+        }else if(v.id == R.id.img_infinito) {
+
+            SecurityPreferences(this).storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
+                MotivationConstants.CATEGORY_PHRASE.MOTIVATION)
+            this.handlePhrase()
+
+        } else if(v.id == R.id.img_user) {
+
+            SecurityPreferences(this).storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
+                MotivationConstants.CATEGORY_PHRASE.HAPPY)
+            this.handlePhrase()
+
+        } else if(v.id == R.id.img_sun) {
+
+            SecurityPreferences(this)
+                .storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
+                    MotivationConstants.CATEGORY_PHRASE.DAY)
+
+
             this.handlePhrase()
         }
 
