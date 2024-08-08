@@ -40,7 +40,7 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
 
         if(name != "") {
 
-            SecurityPreferences(this).storeString("USER_NAME", name)
+            SecurityPreferences(this).storeString(MotivationConstants.KEY.USER_NAME, name)
 
             // Faz a criação e a navegação entre activitys
             val intent: Intent = Intent(this, MainActivity::class.java)
