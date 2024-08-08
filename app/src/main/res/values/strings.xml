@@ -6,4 +6,6 @@
     <string name="vamos_come_ar">Vamos começar?</string>
     <string name="salvar">SALVAR</string>
     <string name="qual_seu_nome">Qual seu nome?</string>
+
+    <string name="validation_mandatory_name">Informe seu nome</string>
 </resources>

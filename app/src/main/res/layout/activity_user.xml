@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/purple"
+    android:padding="16dp"
     tools:context=".UserActivity">
 
     <TextView
@@ -13,28 +14,25 @@
         android:text="@string/vamos_come_ar"
         android:textColor="@color/white"
         android:textSize="30dp"
+        android:fontFamily="@font/cabin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:id="@+id/start_text"
     />
 
-    <TextView
-        android:layout_width="wrap_content"
+    <EditText
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/qual_seu_nome"
-        android:textColor="@color/white"
+        android:hint="@string/qual_seu_nome"
+        android:textColorHint="@color/white"
         android:textSize="20dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="50dp"
         android:layout_centerInParent="true"
-        android:id="@+id/what_name"
-    />
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:layout_below="@+id/what_name"
-        android:layout_centerHorizontal="true"
-        android:backgroundTint="@color/black"
+        android:id="@+id/edit_text"
+        android:textAlignment="center"
+        android:fontFamily="@font/cabin"
+        android:textColor="@color/white"
     />
 
     <Button
@@ -46,6 +44,7 @@
         android:layout_marginBottom="40dp"
         android:backgroundTint="@color/purple_01"
         android:id="@+id/btn_save"
+        android:fontFamily="@font/cabin"
     />
 
 </RelativeLayout>
