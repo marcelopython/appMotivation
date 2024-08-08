@@ -3,4 +3,7 @@
     <string name="ol_kotlin">Olá, Kotlin!</string>
     <string name="app_text">Motivação</string>
     <string name="nova_frase">NOVA FRASE</string>
+    <string name="vamos_come_ar">Vamos começar?</string>
+    <string name="salvar">SALVAR</string>
+    <string name="qual_seu_nome">Qual seu nome?</string>
 </resources>
