@@ -1,6 +1,8 @@
 package com.example.motivation
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -37,6 +39,8 @@ class UserActivity : AppCompatActivity(), View.OnClickListener {
         val name = binding.editText.text.toString()
 
         if(name != "") {
+
+            SecurityPreferences(this).storeString("USER_NAME", name)
 
             // Faz a criação e a navegação entre activitys
             val intent: Intent = Intent(this, MainActivity::class.java)

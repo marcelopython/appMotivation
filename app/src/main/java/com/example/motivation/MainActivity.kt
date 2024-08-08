@@ -16,12 +16,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         supportActionBar?.hide()
 
+        handleUsername()
         // Eventos
         binding.btnNextText.setOnClickListener(this)
 
+    }
+
+    private fun handleUsername() {
+        val name: String = SecurityPreferences(this).getString("USER_NAME")
+        binding.textUserName.text = "Olá, $name!"
     }
 
     override fun onClick(v: View) {
