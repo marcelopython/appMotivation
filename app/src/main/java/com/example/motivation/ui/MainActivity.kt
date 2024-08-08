@@ -1,8 +1,11 @@
-package com.example.motivation
+package com.example.motivation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.motivation.infrastructure.MotivationConstants
+import com.example.motivation.R
+import com.example.motivation.infrastructure.SecurityPreferences
 import com.example.motivation.databinding.ActivityMainBinding
 import kotlin.random.Random
 
