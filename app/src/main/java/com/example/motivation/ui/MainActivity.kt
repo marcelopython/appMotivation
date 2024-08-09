@@ -1,5 +1,6 @@
 package com.example.motivation.ui
 
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -106,22 +107,35 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             this.handlePhrase()
         }else if(v.id == R.id.img_infinito) {
 
+            binding.imgInfinito.setColorFilter(Color.WHITE)
+            binding.imgUser.setColorFilter(Color.BLACK)
+            binding.imgSun.setColorFilter(Color.BLACK)
+
             SecurityPreferences(this).storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
                 MotivationConstants.CATEGORY_PHRASE.MOTIVATION)
+
             this.handlePhrase()
 
         } else if(v.id == R.id.img_user) {
 
+            binding.imgUser.setColorFilter(Color.WHITE)
+            binding.imgInfinito.setColorFilter(Color.BLACK)
+            binding.imgSun.setColorFilter(Color.BLACK)
+
             SecurityPreferences(this).storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
                 MotivationConstants.CATEGORY_PHRASE.HAPPY)
+
             this.handlePhrase()
 
         } else if(v.id == R.id.img_sun) {
 
+            binding.imgSun.setColorFilter(Color.WHITE)
+            binding.imgUser.setColorFilter(Color.BLACK)
+            binding.imgInfinito.setColorFilter(Color.BLACK)
+
             SecurityPreferences(this)
                 .storeString(MotivationConstants.KEY.CATEGORY_PHRASE,
                     MotivationConstants.CATEGORY_PHRASE.DAY)
-
 
             this.handlePhrase()
         }
